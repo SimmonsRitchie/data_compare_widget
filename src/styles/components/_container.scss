@@ -1,0 +1,17 @@
+.container__outer {
+  padding: $s-size $xs-size $s-size $xs-size;
+  max-width: 780px;
+  margin: 0 auto;
+  border-radius: 5px;
+  background-color: white;
+  border: black solid 1px;
+  display: flex;
+  justify-content: center;
+}
+
+.container__inner {
+  max-width: 650px;
+}
+
+
+
