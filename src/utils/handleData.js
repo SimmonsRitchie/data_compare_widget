@@ -15,3 +15,15 @@ export const getUniqueVals = (arr=[], field="") => {
 export const createOptions = (arr) => {
   return arr.map(item => ({"label": item, "value": item}))
 }
+
+export const filterOptions = (data, field, matchVal) => {
+  if (!data || !matchVal) {
+    return []
+  } else {
+    const filteredVals = data.filter(item => item[field].toLowerCase() === matchVal.value.toLowerCase())
+    const uniqueVals = getUniqueVals(filteredVals, "District Name")
+    const schoolOptions = createOptions(uniqueVals)
+    console.log(schoolOptions)
+    return schoolOptions
+  }
+}

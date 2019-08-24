@@ -7,7 +7,6 @@ class Body extends React.Component {
   state = {
     exams: [],
     countyOptions: [],
-    schoolOptions: [],
     select1Parent: null,
     select1Child: null,
     select2Parent: null,
@@ -19,12 +18,9 @@ class Body extends React.Component {
     Promise.all([csv(csvFilePath)]).then(([exams]) => {
       const counties = getUniqueVals(exams, "County");
       const countyOptions = createOptions(counties);
-      const schoolDistricts = getUniqueVals(exams, "School Name");
-      const schoolOptions = createOptions(schoolDistricts);
       this.setState({
         exams,
-        countyOptions,
-        schoolOptions
+        countyOptions
       });
     });
   }
@@ -32,19 +28,19 @@ class Body extends React.Component {
   handleSelect = (selection,meta) => {
     console.log(selection,meta);
     this.setState({
-      [meta.name]: selection.value
+      [meta.name]: selection
     })
   };
 
   render() {
-    const { exams, countyOptions, schoolOptions, select1Parent, select2Parent } = this.state;
+    const { exams, countyOptions, select1Parent, select2Parent } = this.state;
 
     return (
       <div className="body__container has-text-centered">
         <SelectContainer
+          exams={exams}
           handleSelect={this.handleSelect}
           countyOptions={countyOptions}
-          schoolOptions={schoolOptions}
           select1Parent={select1Parent}
           select2Parent={select2Parent}
         />

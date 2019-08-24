@@ -4,30 +4,30 @@ import SelectSet from "./SelectSet";
 class SelectContainer extends React.Component {
   render() {
     const {
-      schoolOptions,
       countyOptions,
       select1Parent,
       select2Parent,
-      handleSelect
+      handleSelect,
+      exams
     } = this.props;
 
     return (
       <div className="select-container__container-outer">
         <SelectSet
+          data={exams}
           setNum={1}
           parentOptions={countyOptions}
           parentLabel={"county"}
           parentValue={select1Parent}
-          childOptions={schoolOptions}
           childLabel={"school district"}
           handleSelect={handleSelect}
         />
         <SelectSet
+          data={exams}
           setNum={2}
           parentOptions={countyOptions}
           parentLabel={"county"}
           parentValue={select2Parent}
-          childOptions={schoolOptions}
           childLabel={"school district"}
           handleSelect={handleSelect}
         />

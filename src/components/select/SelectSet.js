@@ -1,15 +1,19 @@
 import React from "react";
 import Select from "react-select";
+import { filterOptions } from '../../utils/handleData'
 
 const SelectSet = ({
+  data,
   setNum,
   parentOptions,
   parentLabel,
   parentValue,
-  childOptions,
   childLabel,
   handleSelect
-}) => (
+}) => {
+  const childOptions = filterOptions(data, "County", parentValue)
+
+  return (
   <div className="select-container__inner-half">
     <div className="select-container__select is-size-7">
       <Select
@@ -17,6 +21,8 @@ const SelectSet = ({
         options={parentOptions}
         onChange={handleSelect}
         placeholder={`Choose ${parentLabel}`}
+        isClearable={true}
+        value={parentValue}
       />
     </div>
     {parentValue && (
@@ -26,10 +32,11 @@ const SelectSet = ({
           options={childOptions}
           onChange={handleSelect}
           placeholder={`Choose ${childLabel}`}
+          isClearable={true}
         />
       </div>
     )}
   </div>
-);
+)};
 
 export default SelectSet;
