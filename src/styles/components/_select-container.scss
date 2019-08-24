@@ -1,0 +1,19 @@
+.select-container__container-outer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.select-container__inner-half {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.select-container__select {
+  width: 100%;
+}

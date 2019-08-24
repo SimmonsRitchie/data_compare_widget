@@ -18,7 +18,7 @@ const Footer = () => {
             <b>Source: </b>Source of Data.
           </p>
           <p>
-            Created by Firstname Lastname, <a href={spotlight}>Spotlight PA</a>
+            Created by Daniel Simmons-Ritchie, <a href={spotlight}>Spotlight PA</a>
           </p>
         </div>
 
