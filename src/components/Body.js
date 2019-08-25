@@ -5,9 +5,30 @@ import ContainerSplit from "./container/ContainerSplit";
 import InfoBox from "./infoBox/InfoBox";
 import SelectSet from "./select/SelectSet";
 
+//  ---------------------- DATA CONFIG  ----------------------------
+/* Set these values based on how you want to process your data */
+
+// SELECTS
+const parentLabel = "county"
+const childLabel = "school district"
+
+// INFO BOX
+const filterKey = "District Name"
+// Data will be grouped by this key name.
+const groupBy = "Subject";
+// Data within each group will be averaged based on these key names:
+const fields = [
+  "Number Scored",
+  "Percent Advanced",
+  "Percent Basic",
+  "Percent Below Basic",
+  "Percent Proficient"
+];
+// ---------------------------------------------------------------------
+
 class Body extends React.Component {
   state = {
-    exams: [],
+    data: [],
     countyOptions: [],
     select1Parent: null,
     select1Child: null,
@@ -17,11 +38,11 @@ class Body extends React.Component {
 
   componentDidMount() {
     const csvFilePath = "./data/exams_2018.csv";
-    Promise.all([csv(csvFilePath)]).then(([exams]) => {
-      const counties = getUniqueVals(exams, "County");
+    Promise.all([csv(csvFilePath)]).then(([data]) => {
+      const counties = getUniqueVals(data, "County");
       const countyOptions = createOptions(counties);
       this.setState({
-        exams,
+        data,
         countyOptions
       });
     });
@@ -35,7 +56,7 @@ class Body extends React.Component {
 
   render() {
     const {
-      exams,
+      data,
       countyOptions,
       select1Parent,
       select2Parent,
@@ -47,29 +68,41 @@ class Body extends React.Component {
       <div className="container__body has-text-centered">
         <ContainerSplit>
           <SelectSet
-            data={exams}
+            data={data}
             setNum={1}
             parentOptions={countyOptions}
-            parentLabel={"county"}
+            parentLabel={parentLabel}
             parentValue={select1Parent}
-            childLabel={"school district"}
+            childLabel={childLabel}
             childValue={select1Child}
             handleSelect={this.handleSelect}
           />
           <SelectSet
-            data={exams}
+            data={data}
             setNum={2}
             parentOptions={countyOptions}
-            parentLabel={"county"}
+            parentLabel={parentLabel}
             parentValue={select2Parent}
-            childLabel={"school district"}
+            childLabel={childLabel}
             childValue={select2Child}
             handleSelect={this.handleSelect}
           />
         </ContainerSplit>
         <ContainerSplit>
-          <InfoBox selection={select1Child} data={exams} filterKey={"District Name"} />
-          <InfoBox selection={select2Child} data={exams} filterKey={"District Name"} />
+          <InfoBox
+            selection={select1Child}
+            data={data}
+            filterKey={filterKey}
+            groupBy={groupBy}
+            fields={fields}
+          />
+          <InfoBox
+            selection={select2Child}
+            data={data}
+            filterKey={filterKey}
+            groupBy={groupBy}
+            fields={fields}
+          />
         </ContainerSplit>
       </div>
     );

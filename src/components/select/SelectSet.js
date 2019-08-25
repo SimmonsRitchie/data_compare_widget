@@ -15,8 +15,8 @@ const SelectSet = ({
   const childOptions = filterOptions(data, "County", parentValue)
 
   return (
-  <div className="select-container__inner-half">
-    <div className="select-container__select is-size-7">
+  <div className="container__inner-half">
+    <div className="select__container is-size-7">
       <Select
         name={`select${setNum}Parent`}
         options={parentOptions}
@@ -27,7 +27,7 @@ const SelectSet = ({
       />
     </div>
     {parentValue && (
-      <div className="select-container__select is-size-7">
+      <div className="select__container is-size-7">
         <Select
           name={`select${setNum}Child`}
           options={childOptions}

@@ -6,7 +6,6 @@ export const getUniqueVals = (arr = [], field = "") => {
   arr - the array you want to process
   field - the key you want to get unique values for
   */
-
   const arrayOfVals = arr.map(item => item[field]);
   return [...new Set(arrayOfVals)];
 };
@@ -44,36 +43,37 @@ export const filterArray = (data, field, matchVal) => {
   }
 };
 
-export const averageData = data => {
-  /* Takes an array of objects, returns an average of key values for a selected key */
+export const averageData = ({data, groupBy, fields=[]}) => {
+  /* Takes an array of objects, returns an object of average values based on 
+  groupBy field.
+  
+  params
+  data: Arr. Array of objects with data to process
+  groupBy: Str. The key that you want to group all the objects by.
+  fields: Arr. The Keys that you want to average for each group
+  
+  */
   if (!data) {
-    return []
+    return {}
   }
-  console.log("Input data:", data);
-  const groupBy = "Subject";
-  const fields = ["Number Scored","Percent Advanced","Percent Basic","Percent Below Basic","Percent Proficient"];
   const uniqueGroups = getUniqueVals(data, groupBy);
-  console.log(uniqueGroups);
   // Outer loop: {groupName: {field1: val, field2: val}}
-  const avgVals = uniqueGroups.map(groupName => {
-    
-    const fieldAvgs = fields.map((field) => {
+  const groupAvgs = {}
+  uniqueGroups.forEach(groupName => {
+    const fieldAvgs = {}
+    fields.forEach((field) => {
       const fieldTotal = data.reduce((total, item) => {
         if (item[groupBy] === groupName) {
-          console.log("match", item[groupBy]);
-          console.log(field, +item[field]);
-          console.log("running total", total);
           return total + +item[field];
         } else {
           return total;
         }
       }, 0);
       const groupLength = data.filter(item => item[groupBy] === groupName).length
-      console.log(groupLength)
       const fieldAvg = fieldTotal ? fieldTotal / groupLength : 0
-      return {[field]:fieldAvg}
+      fieldAvgs[field] = fieldAvg
     })
-    return {[groupName]: {...fieldAvgs}}
+    groupAvgs[groupName] = fieldAvgs
   });
-  return avgVals;
+  return groupAvgs;
 };

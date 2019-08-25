@@ -6,10 +6,12 @@ class InfoBox extends React.Component {
     const {
       selection,
       data,
-      filterKey
+      filterKey,
+      groupBy,
+      fields,
     } = this.props;
     const filteredData = filterArray(data, filterKey, selection)
-    const info = averageData(filteredData)
+    const info = averageData({data: filteredData, groupBy, fields})
     console.log(info)
 
     return (
