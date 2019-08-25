@@ -9,11 +9,17 @@ const SelectSet = ({
   parentOptions,
   parentLabel,
   parentValue,
+  childOptionsKey,
   childLabel,
   childValue,
   handleSelect
 }) => {
-  const childOptions = filterOptions(data, parentOptionsKey, parentValue)
+  const childOptions = filterOptions({
+    data, 
+    filterKey: parentOptionsKey, 
+    filterVal: parentValue,
+    groupBy: childOptionsKey
+  })
 
   return (
   <div className="container__inner-half">
