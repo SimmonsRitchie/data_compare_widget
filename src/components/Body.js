@@ -28,7 +28,6 @@ class Body extends React.Component {
   }
 
   handleSelect = (selection, meta) => {
-    console.log(selection, meta);
     this.setState({
       [meta.name]: selection
     });
@@ -69,8 +68,8 @@ class Body extends React.Component {
           />
         </ContainerSplit>
         <ContainerSplit>
-          <InfoBox />
-          <InfoBox />
+          <InfoBox selection={select1Child} data={exams} filterKey={"District Name"} />
+          <InfoBox selection={select2Child} data={exams} filterKey={"District Name"} />
         </ContainerSplit>
       </div>
     );

@@ -15,7 +15,7 @@ const Footer = () => {
 
         <div className="is-size-7 has-text-grey has-text-centered">
           <p>
-            <b>Source: </b>Source of Data.
+            <b>Source: </b>Pa. Department of Education
           </p>
           <p>
             Created by Daniel Simmons-Ritchie, <a href={spotlight}>Spotlight PA</a>
