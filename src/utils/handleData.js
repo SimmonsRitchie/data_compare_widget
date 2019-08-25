@@ -17,15 +17,16 @@ export const createOptions = arr => {
   return arr.map(item => ({ label: item, value: item }));
 };
 
-export const filterOptions = (data, field, matchVal) => {
-  /* Takes an array of objects, filters them based on field and matching value.
+export const filterOptions = ({data, filterKey, filterVal, groupBy}) => {
+  /* Takes an array of objects, filters them by a specified field and 
+  returns an array of objects for use by react-select in form {label: item, value: item}
   Returns an empty array if no data provided */
 
-  if (!data || !matchVal) {
+  if (!data || !filterVal) {
     return [];
   } else {
-    const filteredVals = filterArray(data, field, matchVal);
-    const uniqueVals = getUniqueVals(filteredVals, "District Name");
+    const filteredVals = filterArray(data, filterKey, filterVal);
+    const uniqueVals = getUniqueVals(filteredVals, groupBy);
     return createOptions(uniqueVals);
   }
 };
@@ -43,14 +44,15 @@ export const filterArray = (data, field, matchVal) => {
   }
 };
 
-export const averageData = ({data, groupBy, fields=[]}) => {
+export const averageData = ({data, groupBy, fields=[], round=2}) => {
   /* Takes an array of objects, returns an object of average values based on 
   groupBy field.
   
   params
-  data: Arr. Array of objects with data to process
-  groupBy: Str. The key that you want to group all the objects by.
-  fields: Arr. The Keys that you want to average for each group
+  data: Arr. Required. Array of objects with data to process
+  groupBy: Str. Required. The key that you want to group all the objects by.
+  fields: Arr. Required. The Keys that you want to average for each group
+  round: Int. Optional. Number of dp to round averages to. Defaults to 2.
   
   */
   if (!data) {
@@ -70,7 +72,7 @@ export const averageData = ({data, groupBy, fields=[]}) => {
         }
       }, 0);
       const groupLength = data.filter(item => item[groupBy] === groupName).length
-      const fieldAvg = fieldTotal ? fieldTotal / groupLength : 0
+      const fieldAvg = fieldTotal ? parseFloat(fieldTotal / groupLength).toFixed(round) : 0
       fieldAvgs[field] = fieldAvg
     })
     groupAvgs[groupName] = fieldAvgs
