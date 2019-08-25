@@ -80,20 +80,20 @@ class Body extends React.Component {
           />
         </ContainerSplit>
         <ContainerSplit>
-          <InfoBox
+          {select1Child && <InfoBox
             selection={select1Child}
             data={data}
-            filterKey={CHILD_OPTIONS_KEY}
+            childOptionsKey={CHILD_OPTIONS_KEY}
             groupBy={GROUP_BY}
             fields={FIELDS}
-          />
-          <InfoBox
+          />}
+          {select2Child && <InfoBox
             selection={select2Child}
             data={data}
-            filterKey={CHILD_OPTIONS_KEY}
+            childOptionsKey={CHILD_OPTIONS_KEY}
             groupBy={GROUP_BY}
             fields={FIELDS}
-          />
+          />}
         </ContainerSplit>
       </div>
     );

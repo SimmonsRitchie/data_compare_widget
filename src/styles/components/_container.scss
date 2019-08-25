@@ -23,7 +23,7 @@
 .container__split {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
 }
@@ -33,6 +33,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  width: 50%;
   // padding: $xs-size;
 }

@@ -6,16 +6,19 @@ class InfoBox extends React.Component {
     const {
       selection,
       data,
-      filterKey,
+      childOptionsKey,
       groupBy,
       fields,
     } = this.props;
-    const filteredData = filterArray(data, filterKey, selection)
-    const info = averageData({data: filteredData, groupBy, fields})
-    console.log(info)
-
+    const filteredData = filterArray(data, childOptionsKey, selection)
+    const stats = averageData({data: filteredData, groupBy, fields})
+    console.log(filteredData)
+    const title = filteredData.length > 0 ? filteredData[0][childOptionsKey] : ""
+    console.log(stats)
+    console.log(title)
     return (
-      <div>
+      <div className="container__inner-half">
+      <div>{title}</div>
       </div>
     );
   }
