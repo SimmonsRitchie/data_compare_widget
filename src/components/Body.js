@@ -61,6 +61,7 @@ class Body extends React.Component {
             parentOptions={parentOptions}
             parentLabel={PARENT_LABEL}
             parentValue={select1Parent}
+            childOptionsKey={CHILD_OPTIONS_KEY}
             childLabel={CHILD_LABEL}
             childValue={select1Child}
             handleSelect={this.handleSelect}
@@ -72,6 +73,7 @@ class Body extends React.Component {
             parentOptions={parentOptions}
             parentLabel={PARENT_LABEL}
             parentValue={select2Parent}
+            childOptionsKey={CHILD_OPTIONS_KEY}
             childLabel={CHILD_LABEL}
             childValue={select2Child}
             handleSelect={this.handleSelect}
