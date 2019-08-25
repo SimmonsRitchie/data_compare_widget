@@ -13,17 +13,22 @@ export const getUniqueVals = (arr=[], field="") => {
 }
 
 export const createOptions = (arr) => {
+  /* Takes an array of strings, returns an array of objects in format:
+  {label: item, value: item} */
+  
   return arr.map(item => ({"label": item, "value": item}))
 }
 
 export const filterOptions = (data, field, matchVal) => {
+  /* Takes an array of objects, filters them based on field and matching value.
+  Returns an empty array if no data provided */
+
   if (!data || !matchVal) {
     return []
   } else {
     const filteredVals = data.filter(item => item[field].toLowerCase() === matchVal.value.toLowerCase())
     const uniqueVals = getUniqueVals(filteredVals, "District Name")
     const schoolOptions = createOptions(uniqueVals)
-    console.log(schoolOptions)
     return schoolOptions
   }
 }

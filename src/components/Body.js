@@ -1,7 +1,9 @@
 import React from "react";
 import { csv } from "d3-fetch";
 import { getUniqueVals, createOptions } from "./../utils/handleData";
-import SelectContainer from "./select/SelectContainer";
+import ContainerSplit from "./container/ContainerSplit";
+import InfoBox from "./infoBox/InfoBox";
+import SelectSet from "./select/SelectSet";
 
 class Body extends React.Component {
   state = {
@@ -25,25 +27,51 @@ class Body extends React.Component {
     });
   }
 
-  handleSelect = (selection,meta) => {
-    console.log(selection,meta);
+  handleSelect = (selection, meta) => {
+    console.log(selection, meta);
     this.setState({
       [meta.name]: selection
-    })
+    });
   };
 
   render() {
-    const { exams, countyOptions, select1Parent, select2Parent } = this.state;
+    const {
+      exams,
+      countyOptions,
+      select1Parent,
+      select2Parent,
+      select1Child,
+      select2Child
+    } = this.state;
 
     return (
-      <div className="body__container has-text-centered">
-        <SelectContainer
-          exams={exams}
-          handleSelect={this.handleSelect}
-          countyOptions={countyOptions}
-          select1Parent={select1Parent}
-          select2Parent={select2Parent}
-        />
+      <div className="container__body has-text-centered">
+        <ContainerSplit>
+          <SelectSet
+            data={exams}
+            setNum={1}
+            parentOptions={countyOptions}
+            parentLabel={"county"}
+            parentValue={select1Parent}
+            childLabel={"school district"}
+            childValue={select1Child}
+            handleSelect={this.handleSelect}
+          />
+          <SelectSet
+            data={exams}
+            setNum={2}
+            parentOptions={countyOptions}
+            parentLabel={"county"}
+            parentValue={select2Parent}
+            childLabel={"school district"}
+            childValue={select2Child}
+            handleSelect={this.handleSelect}
+          />
+        </ContainerSplit>
+        <ContainerSplit>
+          <InfoBox />
+          <InfoBox />
+        </ContainerSplit>
       </div>
     );
   }

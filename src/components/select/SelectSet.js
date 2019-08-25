@@ -9,6 +9,7 @@ const SelectSet = ({
   parentLabel,
   parentValue,
   childLabel,
+  childValue,
   handleSelect
 }) => {
   const childOptions = filterOptions(data, "County", parentValue)
@@ -33,6 +34,7 @@ const SelectSet = ({
           onChange={handleSelect}
           placeholder={`Choose ${childLabel}`}
           isClearable={true}
+          value={childValue}
         />
       </div>
     )}
