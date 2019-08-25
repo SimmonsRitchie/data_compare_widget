@@ -5,6 +5,7 @@ import { filterOptions } from '../../utils/handleData'
 const SelectSet = ({
   data,
   setNum,
+  parentOptionsKey,
   parentOptions,
   parentLabel,
   parentValue,
@@ -12,7 +13,7 @@ const SelectSet = ({
   childValue,
   handleSelect
 }) => {
-  const childOptions = filterOptions(data, "County", parentValue)
+  const childOptions = filterOptions(data, parentOptionsKey, parentValue)
 
   return (
   <div className="container__inner-half">

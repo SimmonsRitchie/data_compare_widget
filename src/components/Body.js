@@ -4,32 +4,19 @@ import { getUniqueVals, createOptions } from "./../utils/handleData";
 import ContainerSplit from "./container/ContainerSplit";
 import InfoBox from "./infoBox/InfoBox";
 import SelectSet from "./select/SelectSet";
-
-//  ---------------------- DATA CONFIG  ----------------------------
-/* Set these values based on how you want to process your data */
-
-// SELECTS
-const parentLabel = "county"
-const childLabel = "school district"
-
-// INFO BOX
-const filterKey = "District Name"
-// Data will be grouped by this key name.
-const groupBy = "Subject";
-// Data within each group will be averaged based on these key names:
-const fields = [
-  "Number Scored",
-  "Percent Advanced",
-  "Percent Basic",
-  "Percent Below Basic",
-  "Percent Proficient"
-];
-// ---------------------------------------------------------------------
+import {
+  PARENT_OPTIONS_KEY,
+  CHILD_OPTIONS_KEY,
+  PARENT_LABEL,
+  CHILD_LABEL,
+  GROUP_BY,
+  FIELDS
+} from "./config";
 
 class Body extends React.Component {
   state = {
     data: [],
-    countyOptions: [],
+    parentOptions: [],
     select1Parent: null,
     select1Child: null,
     select2Parent: null,
@@ -39,11 +26,11 @@ class Body extends React.Component {
   componentDidMount() {
     const csvFilePath = "./data/exams_2018.csv";
     Promise.all([csv(csvFilePath)]).then(([data]) => {
-      const counties = getUniqueVals(data, "County");
-      const countyOptions = createOptions(counties);
+      const uniqueVals = getUniqueVals(data, PARENT_OPTIONS_KEY);
+      const parentOptions = createOptions(uniqueVals);
       this.setState({
         data,
-        countyOptions
+        parentOptions
       });
     });
   }
@@ -57,7 +44,7 @@ class Body extends React.Component {
   render() {
     const {
       data,
-      countyOptions,
+      parentOptions,
       select1Parent,
       select2Parent,
       select1Child,
@@ -70,20 +57,22 @@ class Body extends React.Component {
           <SelectSet
             data={data}
             setNum={1}
-            parentOptions={countyOptions}
-            parentLabel={parentLabel}
+            parentOptionsKey={PARENT_OPTIONS_KEY}
+            parentOptions={parentOptions}
+            parentLabel={PARENT_LABEL}
             parentValue={select1Parent}
-            childLabel={childLabel}
+            childLabel={CHILD_LABEL}
             childValue={select1Child}
             handleSelect={this.handleSelect}
           />
           <SelectSet
             data={data}
             setNum={2}
-            parentOptions={countyOptions}
-            parentLabel={parentLabel}
+            parentOptionsKey={PARENT_OPTIONS_KEY}
+            parentOptions={parentOptions}
+            parentLabel={PARENT_LABEL}
             parentValue={select2Parent}
-            childLabel={childLabel}
+            childLabel={CHILD_LABEL}
             childValue={select2Child}
             handleSelect={this.handleSelect}
           />
@@ -92,16 +81,16 @@ class Body extends React.Component {
           <InfoBox
             selection={select1Child}
             data={data}
-            filterKey={filterKey}
-            groupBy={groupBy}
-            fields={fields}
+            filterKey={CHILD_OPTIONS_KEY}
+            groupBy={GROUP_BY}
+            fields={FIELDS}
           />
           <InfoBox
             selection={select2Child}
             data={data}
-            filterKey={filterKey}
-            groupBy={groupBy}
-            fields={fields}
+            filterKey={CHILD_OPTIONS_KEY}
+            groupBy={GROUP_BY}
+            fields={FIELDS}
           />
         </ContainerSplit>
       </div>
