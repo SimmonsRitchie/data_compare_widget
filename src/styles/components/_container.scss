@@ -23,16 +23,24 @@
 .container__split {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+
 }
 
-.container__inner-half {
+.container__inner-left {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 50%;
-  // padding: $xs-size;
+  width: 49%;
+}
+
+.container__inner-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 49%;
 }

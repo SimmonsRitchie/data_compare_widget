@@ -53,48 +53,60 @@ class Body extends React.Component {
 
     return (
       <div className="container__body has-text-centered">
-        <ContainerSplit>
-          <SelectSet
-            data={data}
-            setNum={1}
-            parentOptionsKey={PARENT_OPTIONS_KEY}
-            parentOptions={parentOptions}
-            parentLabel={PARENT_LABEL}
-            parentValue={select1Parent}
-            childOptionsKey={CHILD_OPTIONS_KEY}
-            childLabel={CHILD_LABEL}
-            childValue={select1Child}
-            handleSelect={this.handleSelect}
-          />
-          <SelectSet
-            data={data}
-            setNum={2}
-            parentOptionsKey={PARENT_OPTIONS_KEY}
-            parentOptions={parentOptions}
-            parentLabel={PARENT_LABEL}
-            parentValue={select2Parent}
-            childOptionsKey={CHILD_OPTIONS_KEY}
-            childLabel={CHILD_LABEL}
-            childValue={select2Child}
-            handleSelect={this.handleSelect}
-          />
-        </ContainerSplit>
-        <ContainerSplit>
-          {select1Child && <InfoBox
-            selection={select1Child}
-            data={data}
-            childOptionsKey={CHILD_OPTIONS_KEY}
-            groupBy={GROUP_BY}
-            fields={FIELDS}
-          />}
-          {select2Child && <InfoBox
-            selection={select2Child}
-            data={data}
-            childOptionsKey={CHILD_OPTIONS_KEY}
-            groupBy={GROUP_BY}
-            fields={FIELDS}
-          />}
-        </ContainerSplit>
+        <ContainerSplit
+          left={
+            <SelectSet
+              data={data}
+              setNum={1}
+              parentOptionsKey={PARENT_OPTIONS_KEY}
+              parentOptions={parentOptions}
+              parentLabel={PARENT_LABEL}
+              parentValue={select1Parent}
+              childOptionsKey={CHILD_OPTIONS_KEY}
+              childLabel={CHILD_LABEL}
+              childValue={select1Child}
+              handleSelect={this.handleSelect}
+            />
+          }
+          right={
+            <SelectSet
+              data={data}
+              setNum={2}
+              parentOptionsKey={PARENT_OPTIONS_KEY}
+              parentOptions={parentOptions}
+              parentLabel={PARENT_LABEL}
+              parentValue={select2Parent}
+              childOptionsKey={CHILD_OPTIONS_KEY}
+              childLabel={CHILD_LABEL}
+              childValue={select2Child}
+              handleSelect={this.handleSelect}
+            />
+          }
+        />
+        <ContainerSplit
+          left={
+            select1Child && (
+              <InfoBox
+                selection={select1Child}
+                data={data}
+                childOptionsKey={CHILD_OPTIONS_KEY}
+                groupBy={GROUP_BY}
+                fields={FIELDS}
+              />
+            )
+          }
+          right={
+            select2Child && (
+              <InfoBox
+                selection={select2Child}
+                data={data}
+                childOptionsKey={CHILD_OPTIONS_KEY}
+                groupBy={GROUP_BY}
+                fields={FIELDS}
+              />
+            )
+          }
+        />
       </div>
     );
   }

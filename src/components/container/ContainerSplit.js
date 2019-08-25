@@ -3,12 +3,14 @@ import React from "react";
 class ContainerSplit extends React.Component {
   render() {
     const {
-      children
+      left,
+      right
     } = this.props;
 
     return (
       <div className="container__split">
-        {children}
+        <div className="container__inner-left">{left}</div>
+        <div className="container__inner-right">{right}</div>
       </div>
     );
   }

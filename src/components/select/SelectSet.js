@@ -22,7 +22,7 @@ const SelectSet = ({
   })
 
   return (
-  <div className="container__inner-half">
+  <div className="select-set__container">
     <div className="select__container is-size-7">
       <Select
         name={`select${setNum}Parent`}
