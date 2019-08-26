@@ -17,7 +17,7 @@ class InfoBox extends React.Component {
     const title = filteredData.length > 0 ? filteredData[0][childOptionsKey] : ""
     console.log(stats)
     return (
-      <div className="box">
+      <div className="box info-box__container">
       <div className="info-box__title">{title}</div>
       {stats && (
         <InfoGroup 

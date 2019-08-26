@@ -53,7 +53,7 @@ $weight-semibold: 600;
 $weight-bold: 900;
 $title-weight: $weight-bold;
 $box-shadow: 0 2px 3px rgba($black, 0.3), 0 0 0 1px rgba($black, 0.3);
-$box-padding: $xs-size;
+$box-padding: $s-size $xs-size;
 
 // BULMA VARS - COLORS
 $primary: $blue;

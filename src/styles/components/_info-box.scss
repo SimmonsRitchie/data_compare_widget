@@ -1,9 +1,12 @@
+.info-box__container {
+  width: 100%;
+}
+
 .info-box__title {
   font-size: 0.8em;
   color: $primary;
   margin-bottom: $xs-size;
+  font-weight: 900;
+  line-height: 1.125;
 }
 
-.info-box__info-group {
-  font-size: 0.7em;
-}
