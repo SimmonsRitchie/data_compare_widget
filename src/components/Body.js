@@ -36,9 +36,22 @@ class Body extends React.Component {
   }
 
   handleSelect = (selection, meta) => {
-    this.setState({
-      [meta.name]: selection
-    });
+    const selectName = meta.name
+    const selectSet = selectName.match(/select\d/)[0]
+    const selectMember = selectName.match(/(parent|child)/i)[0]
+    if (selectMember === 'Parent' && this.state[selectSet + "Child"]) {
+      // If parent select is selected after child select has been set, 
+      // we clear the child select's value to create a cohesive UI.
+      this.setState({
+        [selectName]: selection,
+        [selectSet + "Child"]: null,
+      });
+    } else {
+      this.setState({
+        [selectName]: selection
+      });
+    }
+
   };
 
   render() {
