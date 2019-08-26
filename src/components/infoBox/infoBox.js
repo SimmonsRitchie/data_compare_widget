@@ -1,5 +1,6 @@
 import React from "react";
-import { filterArray, averageData } from "./../../utils/handleData"
+import { filterArray, averageData, getUniqueVals } from "./../../utils/handleData"
+import InfoGroup from "./infoGroup"
 
 class InfoBox extends React.Component {
   render() {
@@ -11,14 +12,21 @@ class InfoBox extends React.Component {
       fields,
     } = this.props;
     const filteredData = filterArray(data, childOptionsKey, selection)
+    const groups = getUniqueVals(filteredData, groupBy)
     const stats = averageData({data: filteredData, groupBy, fields})
-    console.log(filteredData)
     const title = filteredData.length > 0 ? filteredData[0][childOptionsKey] : ""
     console.log(stats)
-    console.log(title)
     return (
-      <div className="container__inner-half">
+      <div className="box">
       <div>{title}</div>
+      {stats && (
+        <InfoGroup 
+        groups={groups}
+        fields={fields}
+        data={stats}
+        />
+      )
+      }
       </div>
     );
   }
