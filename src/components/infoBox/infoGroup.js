@@ -2,7 +2,7 @@ import React from "react";
 
 
 const InfoGroup = ({groups, fields, data}) => (
-  <div>
+  <div className="info-box__info-group">
   {groups.map(group => {
     return (
       <div key={group}>

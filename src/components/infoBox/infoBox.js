@@ -18,7 +18,7 @@ class InfoBox extends React.Component {
     console.log(stats)
     return (
       <div className="box">
-      <div>{title}</div>
+      <div className="info-box__title">{title}</div>
       {stats && (
         <InfoGroup 
         groups={groups}
