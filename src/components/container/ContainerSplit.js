@@ -9,8 +9,8 @@ class ContainerSplit extends React.Component {
 
     return (
       <div className="container__split">
-        <div className="container__inner-left">{left}</div>
-        <div className="container__inner-right">{right}</div>
+        <div className="container__split-inner">{left}</div>
+        <div className="container__split-inner">{right}</div>
       </div>
     );
   }
