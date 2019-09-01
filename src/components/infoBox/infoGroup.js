@@ -1,9 +1,13 @@
 import React from "react";
 import { getUniqueVals } from "../../utils/processData/helpers"
+import { formatData, getDisplayFieldNames } from "../../utils/display/displayData"
+
 
 const InfoGroup = ({ data, fields }) => {
   const groups = Object.keys(data)
-  const fieldsArr = getUniqueVals(fields, 'name')
+  const formattedData = formatData(data, fields)
+  const fieldsArr = getDisplayFieldNames(fields)
+  console.log(formattedData)
   return (
   <div className="">
     {groups.map(group => {
@@ -16,7 +20,7 @@ const InfoGroup = ({ data, fields }) => {
               return (
                 <tr key={field + idx}>
                   <td>{field}</td>
-                  <td>{data[group][field]}</td>
+                  <td>{formattedData[group][field]}</td>
                 </tr>
               );
             })}

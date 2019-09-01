@@ -6,7 +6,7 @@ Configure what fields are used to create dropdown options and what data is displ
 // ------ FORMATTERS
 // These functions are passed into FIELDS to display data
 // in different ways, eg. by adding '%'
-const displayAsPercent = (number) => `${round(number,1)}%`
+const displayAsPercent = (number) => `${number}%`
 
 // ---------------------------------------------------------------------
 
