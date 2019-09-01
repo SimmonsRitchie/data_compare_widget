@@ -30,10 +30,12 @@ export const GROUP_BY = "Subject";
 // ];
 export const FIELDS = [{
   name: "Number Scored",
+  displayName: null,
   format: null
 },
 {
   name: "Percent Proficient",
+  displayName: null,
   format: null
 }]
 
