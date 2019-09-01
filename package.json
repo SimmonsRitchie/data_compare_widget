@@ -14,6 +14,9 @@
     "size": "size-limit"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.22",
+    "@fortawesome/free-solid-svg-icons": "^5.10.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "d3-fetch": "^1.1.2",
     "express": "4.15.4",
     "halogenium": "^2.2.3",
