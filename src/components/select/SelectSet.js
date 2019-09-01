@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "react-select";
-import { filterOptions } from '../../utils/handleData'
+import { createChildOptions } from '../../utils/processData/options'
 
 const SelectSet = ({
   data,
@@ -14,10 +14,11 @@ const SelectSet = ({
   childValue,
   handleSelect
 }) => {
-  const childOptions = filterOptions({
+  const filterVal = parentValue ? parentValue.value : undefined;
+  const childOptions = createChildOptions({
     data, 
     filterKey: parentOptionsKey, 
-    filterVal: parentValue,
+    filterVal,
     groupBy: childOptionsKey
   })
 

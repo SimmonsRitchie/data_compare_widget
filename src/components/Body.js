@@ -1,6 +1,9 @@
 import React from "react";
 import { csv } from "d3-fetch";
-import { getUniqueVals, createOptions } from "./../utils/handleData";
+import {
+  processData,
+} from "../utils/processData/processData";
+import { createParentOptions } from '../utils/processData/options'
 import ContainerSplit from "./container/ContainerSplit";
 import InfoBox from "./infoBox/InfoBox";
 import SelectSet from "./select/SelectSet";
@@ -10,6 +13,7 @@ import {
   CHILD_OPTIONS_KEY,
   PARENT_LABEL,
   CHILD_LABEL,
+  FILTER_OUT,
   GROUP_BY,
   FIELDS
 } from "../config";
@@ -26,32 +30,38 @@ class Body extends React.Component {
 
   componentDidMount() {
     Promise.all([csv(INPUT_FILE_PATH)]).then(([data]) => {
-      const uniqueVals = getUniqueVals(data, PARENT_OPTIONS_KEY);
-      const parentOptions = createOptions(uniqueVals);
-      this.setState({
+      const processedData = processData({
         data,
+        groupBy: GROUP_BY,
+        filters: FILTER_OUT,
+        fields: FIELDS,
+        parentOptionsKey: PARENT_OPTIONS_KEY,
+        childOptionsKey: CHILD_OPTIONS_KEY
+      });
+      const parentOptions = createParentOptions(processedData, PARENT_OPTIONS_KEY)
+      this.setState({
+        data: processedData,
         parentOptions
       });
     });
   }
 
   handleSelect = (selection, meta) => {
-    const selectName = meta.name
-    const selectSet = selectName.match(/select\d/)[0]
-    const selectMember = selectName.match(/(parent|child)/i)[0]
-    if (selectMember === 'Parent' && this.state[selectSet + "Child"]) {
-      // If parent select is selected after child select has been set, 
+    const selectName = meta.name;
+    const selectSet = selectName.match(/select\d/)[0];
+    const selectMember = selectName.match(/(parent|child)/i)[0];
+    if (selectMember === "Parent" && this.state[selectSet + "Child"]) {
+      // If parent select is selected after child select has been set,
       // clear the child select's value.
       this.setState({
         [selectName]: selection,
-        [selectSet + "Child"]: null,
+        [selectSet + "Child"]: null
       });
     } else {
       this.setState({
         [selectName]: selection
       });
     }
-
   };
 
   render() {
@@ -100,10 +110,9 @@ class Body extends React.Component {
           left={
             select1Child && (
               <InfoBox
-                selection={select1Child}
+                selectedChildVal={select1Child}
                 data={data}
                 childOptionsKey={CHILD_OPTIONS_KEY}
-                groupBy={GROUP_BY}
                 fields={FIELDS}
               />
             )
@@ -111,10 +120,9 @@ class Body extends React.Component {
           right={
             select2Child && (
               <InfoBox
-                selection={select2Child}
+                selectedChildVal={select2Child}
                 data={data}
                 childOptionsKey={CHILD_OPTIONS_KEY}
-                groupBy={GROUP_BY}
                 fields={FIELDS}
               />
             )

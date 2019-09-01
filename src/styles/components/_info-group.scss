@@ -1,5 +1,9 @@
 .info-group__inner-container {
   margin: $s-size 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
 }
 

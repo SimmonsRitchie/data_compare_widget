@@ -1,7 +1,8 @@
 import React from "react";
-import { getUniqueVals } from "./../../utils/handleData"
+import { getUniqueVals } from "../../utils/processData/helpers"
 
-const InfoGroup = ({ groups, fields, data }) => {
+const InfoGroup = ({ data, fields }) => {
+  const groups = Object.keys(data)
   const fieldsArr = getUniqueVals(fields, 'name')
   return (
   <div className="">
@@ -10,16 +11,16 @@ const InfoGroup = ({ groups, fields, data }) => {
         <div key={group} className="info-group__inner-container">
           <div className="info-group__title">{group}</div>
           <table className="table info-group__body">
-            <tbody>
-              {fieldsArr.map((field, idx) => {
-                return (
-                  <tr key={field + idx}>
-                    <td>{field}</td>
-                    <td>{data[group][field]}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
+          <tbody>
+            {fieldsArr.map((field, idx) => {
+              return (
+                <tr key={field + idx}>
+                  <td>{field}</td>
+                  <td>{data[group][field]}</td>
+                </tr>
+              );
+            })}
+          </tbody>
           </table>
         </div>
       );
@@ -28,3 +29,4 @@ const InfoGroup = ({ groups, fields, data }) => {
 );}
 
 export default InfoGroup;
+
