@@ -6,7 +6,8 @@ Configure what fields are used to create dropdown options and what data is displ
 // ------ FORMATTERS
 // These functions are passed into FIELDS to display data
 // in different ways, eg. by adding '%'
-const displayAsPercent = (number) => `${number}%`
+const roundToOneDp = (number) => parseFloat(number).toFixed(1)
+const displayAsPercent = (number) => `${roundToOneDp(number)}%`
 
 // ---------------------------------------------------------------------
 
@@ -39,7 +40,7 @@ export const GROUP_BY = 'Subject'
 export const FIELDS = [{
   name: "Number Scored",
   displayName: "Avg test score",
-  format: null
+  format: roundToOneDp
 },
 {
   name: "Percent Proficient",
