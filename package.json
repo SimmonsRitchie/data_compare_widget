@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Daniel Simmons-Ritchie",
   "license": "MIT",
+  "engines": {
+    "node": "12.6.0"
+  },
   "scripts": {
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
