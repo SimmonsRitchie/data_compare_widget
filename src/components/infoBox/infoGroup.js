@@ -1,5 +1,4 @@
 import React from "react";
-import { getUniqueVals } from "../../utils/processData/helpers"
 import { formatData, getDisplayFieldNames } from "../../utils/display/displayData"
 
 
