@@ -5,13 +5,14 @@ import ContainerSplit from "./container/ContainerSplit";
 import InfoBox from "./infoBox/InfoBox";
 import SelectSet from "./select/SelectSet";
 import {
+  INPUT_FILE_PATH,
   PARENT_OPTIONS_KEY,
   CHILD_OPTIONS_KEY,
   PARENT_LABEL,
   CHILD_LABEL,
   GROUP_BY,
   FIELDS
-} from "./config";
+} from "../config";
 
 class Body extends React.Component {
   state = {
@@ -24,8 +25,7 @@ class Body extends React.Component {
   };
 
   componentDidMount() {
-    const csvFilePath = "./data/exams_2018.csv";
-    Promise.all([csv(csvFilePath)]).then(([data]) => {
+    Promise.all([csv(INPUT_FILE_PATH)]).then(([data]) => {
       const uniqueVals = getUniqueVals(data, PARENT_OPTIONS_KEY);
       const parentOptions = createOptions(uniqueVals);
       this.setState({
@@ -41,7 +41,7 @@ class Body extends React.Component {
     const selectMember = selectName.match(/(parent|child)/i)[0]
     if (selectMember === 'Parent' && this.state[selectSet + "Child"]) {
       // If parent select is selected after child select has been set, 
-      // we clear the child select's value to create a cohesive UI.
+      // clear the child select's value.
       this.setState({
         [selectName]: selection,
         [selectSet + "Child"]: null,
