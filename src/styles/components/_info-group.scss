@@ -1,5 +1,6 @@
 .info-group__inner-container {
-  margin-top: $xs-size;
+  margin: $s-size 0 0 0;
+
 }
 
 .info-group__title {
@@ -8,10 +9,10 @@
   font-weight: 900;
   line-height: 1.125;
   font-size: 0.8em;
-
+  padding-bottom: $xs-size;
 }
 
 .info-group__body {
-  font-size: 0.8em;
+  font-size: 0.7em;
 
 }
