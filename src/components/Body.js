@@ -5,7 +5,7 @@ import {
 } from "../utils/processData/processData";
 import { createParentOptions } from '../utils/processData/options'
 import ContainerSplit from "./container/ContainerSplit";
-import InfoBox from "./infoBox/InfoBox";
+import InfoBox from "./infoBox/infoBox"
 import SelectSet from "./select/SelectSet";
 import {
   INPUT_FILE_PATH,
