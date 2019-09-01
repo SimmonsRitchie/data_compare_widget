@@ -21,12 +21,20 @@ export const CHILD_LABEL = "school district"
 // Data will be grouped by this key name.
 export const GROUP_BY = "Subject";
 // Data within each group will be averaged based on these key names:
-export const FIELDS = [
-  "Number Scored",
-  // "Percent Advanced",
-  // "Percent Basic",
-  // "Percent Below Basic",
-  "Percent Proficient"
-];
+// export const FIELDS = [
+//   "Number Scored",
+//   // "Percent Advanced",
+//   // "Percent Basic",
+//   // "Percent Below Basic",
+//   "Percent Proficient"
+// ];
+export const FIELDS = [{
+  name: "Number Scored",
+  format: null
+},
+{
+  name: "Percent Proficient",
+  format: null
+}]
 
 // ---------------------------------------------------------------------

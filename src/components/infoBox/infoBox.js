@@ -16,8 +16,12 @@ class InfoBox extends React.Component {
     const filteredData = filterArray(data, childOptionsKey, selection)
     // Get data groups, eg. Algebra 1, Literature, etc.
     const groups = getUniqueVals(filteredData, groupBy)
+    // Get list of fields
+    const fieldArr = getUniqueVals(fields,'name')
+    console.log("field arr",fieldArr)
     // Average
-    const stats = averageData({data: filteredData, groupBy, fields})
+    const stats = averageData({data: filteredData, groupBy, fields: fieldArr})
+    console.log(stats)
     const title = filteredData.length > 0 ? filteredData[0][childOptionsKey] : ""
     return (
       <div className="box info-box__container">
