@@ -1,11 +1,13 @@
 .info-box__container {
   width: 100%;
   font-family: 'Oswald', sans-serif !important;
-
+  font-size: 0.8em;
+  @media (min-width: $mid-breakpoint) {
+    font-size:0.91em;
+  }
 }
 
 .info-box__title {
-  font-size: 0.8em;
   color: $primary;
   margin-bottom: $xs-size;
   font-weight: 900;
