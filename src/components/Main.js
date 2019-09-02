@@ -24,7 +24,7 @@ class Main extends React.Component {
       <div className="container__outer">
         <div className="container__inner">
           <Header />
-          <Body />
+          <Body data={this.props.data}/>
           <Footer />
         </div>
       </div>

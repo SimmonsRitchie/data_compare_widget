@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "react-select";
-import { createChildOptions } from '../../utils/processData/options'
+import { createChildOptions } from '../../utils/process/options'
 
 const SelectSet = ({
   data,

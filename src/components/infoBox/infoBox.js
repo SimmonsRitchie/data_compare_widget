@@ -1,5 +1,5 @@
 import React from "react";
-import { filterArray } from "../../utils/processData/helpers"
+import { filterArray } from "../../utils/process/helpers"
 import { formatData } from "../../utils/display/displayData"
 import InfoGroup from "./infoGroup"
 import InfoIcon from './infoIcon'

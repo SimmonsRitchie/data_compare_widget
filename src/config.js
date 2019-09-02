@@ -44,7 +44,7 @@ export const FIELDS = [{
 },
 {
   name: "Percent Proficient",
-  displayName: "Proficient",
+  displayName: "Students proficient",
   format: displayAsPercent
 }]
 

@@ -1,50 +1,31 @@
 import React from "react";
-import { csv } from "d3-fetch";
-import {
-  processData,
-} from "../utils/processData/processData";
-import { createParentOptions } from '../utils/processData/options'
+import { createParentOptions } from '../utils/process/options'
 import ContainerSplit from "./container/ContainerSplit";
 import InfoBox from "./infoBox/infoBox"
 import SelectSet from "./select/SelectSet";
 import {
-  INPUT_FILE_PATH,
   PARENT_OPTIONS_KEY,
   CHILD_OPTIONS_KEY,
   PARENT_LABEL,
   CHILD_LABEL,
-  FILTER_OUT,
-  GROUP_BY,
   FIELDS
 } from "../config";
 
 class Body extends React.Component {
   state = {
-    data: [],
-    parentOptions: [],
+    // parentOptions: [],
     select1Parent: null,
     select1Child: null,
     select2Parent: null,
     select2Child: null
   };
 
-  componentDidMount() {
-    Promise.all([csv(INPUT_FILE_PATH)]).then(([data]) => {
-      const processedData = processData({
-        data,
-        groupBy: GROUP_BY,
-        filters: FILTER_OUT,
-        fields: FIELDS,
-        parentOptionsKey: PARENT_OPTIONS_KEY,
-        childOptionsKey: CHILD_OPTIONS_KEY
-      });
-      const parentOptions = createParentOptions(processedData, PARENT_OPTIONS_KEY)
-      this.setState({
-        data: processedData,
-        parentOptions
-      });
-    });
-  }
+  // componentDidMount() {
+  //     const parentOptions = createParentOptions(this.props.data, PARENT_OPTIONS_KEY)
+  //     this.setState({
+  //       parentOptions
+  //     });
+  // }
 
   handleSelect = (selection, meta) => {
     const selectName = meta.name;
@@ -65,15 +46,15 @@ class Body extends React.Component {
   };
 
   render() {
+    const data = this.props.data
+    const parentOptions = createParentOptions(this.props.data, PARENT_OPTIONS_KEY)
+
     const {
-      data,
-      parentOptions,
       select1Parent,
       select2Parent,
       select1Child,
       select2Child
     } = this.state;
-
     return (
       <div className="container__body has-text-centered">
         <ContainerSplit
