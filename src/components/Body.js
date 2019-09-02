@@ -13,19 +13,11 @@ import {
 
 class Body extends React.Component {
   state = {
-    // parentOptions: [],
     select1Parent: null,
     select1Child: null,
     select2Parent: null,
     select2Child: null
   };
-
-  // componentDidMount() {
-  //     const parentOptions = createParentOptions(this.props.data, PARENT_OPTIONS_KEY)
-  //     this.setState({
-  //       parentOptions
-  //     });
-  // }
 
   handleSelect = (selection, meta) => {
     const selectName = meta.name;
