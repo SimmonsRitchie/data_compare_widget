@@ -6,7 +6,6 @@ const InfoGroup = ({ data, fields }) => {
   const groups = Object.keys(data)
   const formattedData = formatData(data, fields)
   const fieldsArr = getDisplayFieldNames(fields)
-  console.log(formattedData)
   return (
   <div className="">
     {groups.map(group => {

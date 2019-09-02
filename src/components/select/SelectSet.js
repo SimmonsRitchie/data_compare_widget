@@ -12,16 +12,17 @@ const SelectSet = ({
   childOptionsKey,
   childLabel,
   childValue,
-  handleSelect
+  handleSelect,
+  disabledChildOption,
 }) => {
   const filterVal = parentValue ? parentValue.value : undefined;
   const childOptions = createChildOptions({
     data, 
     filterKey: parentOptionsKey, 
     filterVal,
-    groupBy: childOptionsKey
+    groupBy: childOptionsKey,
+    disabledOption: disabledChildOption,
   })
-
   return (
   <div className="select-set__container">
     <div className="select__container is-size-7">

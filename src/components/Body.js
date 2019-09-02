@@ -62,6 +62,8 @@ class Body extends React.Component {
               childLabel={CHILD_LABEL}
               childValue={select1Child}
               handleSelect={this.handleSelect}
+              disabledChildOption={select2Child}
+
             />
           }
           right={
@@ -76,6 +78,7 @@ class Body extends React.Component {
               childLabel={CHILD_LABEL}
               childValue={select2Child}
               handleSelect={this.handleSelect}
+              disabledChildOption={select1Child}
             />
           }
         />
