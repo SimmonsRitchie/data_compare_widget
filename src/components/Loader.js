@@ -3,7 +3,6 @@ import {ClipLoader} from 'halogenium'
 
 const Loader = ({display = true}) => {
   const spotlightBlue = "#009edb"
-  const defaultGreen = "#26A65B"
   return (
     <div>
       {display &&
