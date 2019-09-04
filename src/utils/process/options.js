@@ -22,7 +22,6 @@ export const createChildOptions = ({ data, filterKey, filterVal, groupBy, disabl
     const uniqueVals = getUniqueVals(filteredVals, groupBy);
     let childOptions = createOptions(uniqueVals);
     if (disabledOption) {
-      console.log("disabled option detected...")
       disabledOption = {...disabledOption, isDisabled: true}
       childOptions = disableOption(childOptions, disabledOption)
     } 
@@ -39,8 +38,6 @@ export const createOptions = (arr) => {
 
 
 const disableOption = (options, disabledOption) => {
-  console.log("disabledOption",disabledOption)
   const newOptions = options.map(option => option.value === disabledOption.value ? disabledOption : option)
-  console.log(newOptions)
   return newOptions
 }
