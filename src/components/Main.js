@@ -1,26 +1,31 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useReducer } from "react";
 import Header from "./Header";
 import Body from "./Body";
 import Footer from "./Footer";
-
-import {pymSendHeight} from '../utils/handlePym'
+import dataReducer from "../reducers/data";
+import DataContext from "../context/data-context";
+import { pymSendHeight } from "../utils/handlePym";
 
 const Main = (props) => {
+  const [data, dispatch] = useReducer(dataReducer, []);
+  const loadedData = props.data
 
   useEffect(() => {
-    pymSendHeight({timeout: 500})
+    pymSendHeight({ timeout: 500 });
+    dispatch({ type: "POPULATE_DATA", loadedData });
   }, []);
 
-    return (
-      <div className="container__outer">
-        <div className="container__inner">
+  return (
+    <div className="container__outer">
+      <div className="container__inner">
+        <DataContext.Provider value={{ data }}>
           <Header />
-          <Body data={props.data}/>
+          <Body  />
           <Footer />
-        </div>
+        </DataContext.Provider>
       </div>
-    );
-  }
-
+    </div>
+  );
+};
 
 export default Main;
