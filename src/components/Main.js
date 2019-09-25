@@ -1,31 +1,35 @@
-import React, { useEffect, useReducer } from "react";
+import React from "react";
 import Header from "./Header";
 import Body from "./Body";
 import Footer from "./Footer";
-import dataReducer from "../reducers/data";
-import DataContext from "../context/data-context";
-import { pymSendHeight } from "../utils/handlePym";
 
-const Main = (props) => {
-  const [data, dispatch] = useReducer(dataReducer, []);
-  const loadedData = props.data
+import {pymSendHeight} from '../utils/handlePym'
 
-  useEffect(() => {
-    pymSendHeight({ timeout: 500 });
-    dispatch({ type: "POPULATE_DATA", loadedData });
-  }, []);
+class Main extends React.Component {
 
-  return (
-    <div className="container__outer">
-      <div className="container__inner">
-        <DataContext.Provider value={{ data }}>
+  componentDidMount() {
+    // This is intended to fix bug where app is clipped at bottom
+    // on initial load.
+    pymSendHeight({timeout: 500})
+  }
+
+  componentDidUpdate() {
+    // Because our app changes height based on displayed content, we 
+    // update the iframe height after DOM elements have been updated.
+    pymSendHeight()
+  }
+
+  render() {
+    return (
+      <div className="container__outer">
+        <div className="container__inner">
           <Header />
-          <Body  />
+          <Body data={this.props.data}/>
           <Footer />
-        </DataContext.Provider>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Main;
