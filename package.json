@@ -21,12 +21,11 @@
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "d3-fetch": "^1.1.2",
-    "express": "4.15.4",
-    "halogenium": "^2.2.3",
+    "express": "^4.17.1",
     "js-yaml": "^3.13.1",
     "raf": "3.3.2",
-    "react": "^16.8.0",
-    "react-dom": "16.0.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-select": "2"
   },
   "devDependencies": {
