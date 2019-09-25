@@ -1,5 +1,7 @@
 import React from 'react';
 
+// TODO: Add loader gif/animation
+
 const Loader = ({display = true}) => {
   const spotlightBlue = "#009edb"
   return (
